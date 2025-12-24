@@ -4,7 +4,7 @@ message("=== TARGET: ${LUA_PKG_NAME}")
 add_library(${LUA_PKG_NAME} SHARED
 	./main.cpp )
 
-add_dependencies(${APP_NAME} ${LIB_NAME})
+add_dependencies(${LUA_PKG_NAME} ${LIB_NAME})
 
 set_target_properties(${LUA_PKG_NAME} PROPERTIES
                        POSITION_INDEPENDENT_CODE ON
