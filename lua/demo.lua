@@ -1,3 +1,4 @@
+-- Usage: lua demo.lua "temp/image9.png"
 local sc = require("simpleCanvas")
 
 w = 500
@@ -36,6 +37,6 @@ sc.line(x,y,100,0)
 sc.labelSize(28)
 sc.labelRelative(0,0, "At 150,50 😀 \u{4e2d} ♯ ♭")
 
-sc.save("temp/image9.png")
+sc.save(arg[1])
 
 
