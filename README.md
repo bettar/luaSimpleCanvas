@@ -1,17 +1,55 @@
-# luaSimpleCanvas
-Create 2D drawings from Lua scripts
+# Lua Package: SimpleCanvas
 
-This project was originated out of the need for creating 2D diagrams programmatically and/or from source code scripts.
+## Purpose
+Create 2D diagrams from Lua scripts, building up modules using simple primitives
 
-The initial application was to create music diagrams for cello.
+Two types of output files are generated: HGL and PNG
 
-The output format HGP was chosen as the most suitable, because of its relative simplicity and the fact that the output product is a text file.
+- HGP (vector)
+	The output format HGP was chosen as the most suitable, because of its relative simplicity and the fact that the output product is a text file.
 
-Conversion to more modern image formats (PNG) is done in post-processing with tools like [ImageMagick](https://imagemagick.org/).
 
-Note: it was discovered later that ImageMagick relies on two utilities [hp2xx](https://www.gnu.org/software/hp2xx/) and `gs` (Ghostscript) that must be present on the system. On Linux this is a good solutioin, but on macOS brew has `gs` but it doesn't have `hp2xx` which must be built from sources. When I did that, I ended up with "broken" PNG files, in the sense that they were missing all color information. I might need to spend more time on this macOS issue.
+- PNG (raster)
+	- use wxWidgets 2D drawing primitives to create PNG files. This can be done in two ways
+    - runnibg the app built from this project to read lua scripts
+    - run lua scripts with the lua interpreter from the command line
+	- other graphic formats are possible with a very simple modification to the source code
 
-It was decided to split the core functionality into a library and the music diagrams were create by a custom app calling into that library. At present the  output files are okay for conversion to other formats, but if they were to drive a real plotter they would need to be optimized to minimize the swapping of pens, and to sort the XY coordinates in each command so that the pen doesn't jump back and forth unnecessarily.
+---
+## Usage
 
-An alternative implementation of the library could use wxWidgets drawing primitives to achieve the same result.
+- Use CMake to build the project targets into directory BLD_DIR
 
+### macOS
+- Go to the directory containing your Lua script is
+
+        $ cd lua_scripts
+        $ ln -s $BLD_DIR/lua/Release/libluaPackage.<VERSION>.dylib simpleCanvas.so
+        $ lua demo.lua
+
+- Alternatively use `LUA_DIR`
+
+---
+## Dependencies
+- Lua
+- wxWidgets
+- CMake
+
+6 types of target executables can be built with CMake:
+
+~~~
+$ tree -d
+.
+├── cli
+│   ├── allKeys
+│   ├── major
+│   └── minor
+├── gui
+│   └── fbp
+├── lib
+└── lua
+~~~
+
+---
+## References
+- [HP-GL Reference Guide](https://www.isoplotec.co.jp/HPGL/eHPGL.htm)

@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(simpleCanvas)
+project (simpleCanvas
+    VERSION 1.0.0
+    HOMEPAGE_URL "https://github.com/bettar/luaSimpleCanvas"
+    DESCRIPTION "Create 2D drawings from Lua scripts"
+    LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,7 +35,7 @@ message("LUA_LIBRARIES: ${LUA_LIBRARIES}")
 #-------------------
 set(LIB_NAME scEngine)
 message("=== TARGET: ${LIB_NAME}")
-add_library(${LIB_NAME} SHARED
+add_library(${LIB_NAME} #SHARED
 	lib/common.cpp lib/common.h
 	lib/engineWx.cpp lib/engineWx.h
 	lib/engineHgl.cpp lib/engineHgl.h

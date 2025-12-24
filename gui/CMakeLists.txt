@@ -1,6 +1,6 @@
 set(APP_NAME wx2png)
 message("=== TARGET: ${APP_NAME}")
-message("PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
+#message("PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
 
 add_executable( ${APP_NAME} WIN32 MACOSX_BUNDLE
   main.cpp main.h
