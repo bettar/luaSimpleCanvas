@@ -1,3 +1,6 @@
+.vscode
+.DS_Store
+temp/
 # Compiled Lua sources
 luac.out
 
