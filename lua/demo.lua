@@ -37,6 +37,5 @@ sc.line(x,y,100,0)
 sc.labelSize(28)
 sc.labelRelative(0,0, "At 150,50 😀 \u{4e2d} ♯ ♭")
 
-sc.save(arg[1])
-
-
+if (arg[1] != nil)
+  sc.save(arg[1])
