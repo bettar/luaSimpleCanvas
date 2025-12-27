@@ -135,13 +135,17 @@ void engineWx::anyRect(float x1, float y1, float w, float h)
 void engineWx::labelRelative(float dx, float dy, const std::string & label)
 {
     //wxLogMessage("%s:%d %s, %s)", __FILE_NAME__, __LINE__, __FUNCTION__, label);
-    //_memDC->DrawText(wxString( label.c_str(), wxConvUTF8), savedX+dx, savedY+dy);
     labelAt(savedX+dx, savedY+dy, label);
 }
 
 void engineWx::labelAt(float x, float y, const std::string & label)
 {
+#if 0 //def __linux__
+    // FIXME: relocation R_X86_64_PC32 against symbol `wxNullBitmap@@WXU_3.2' can not be used when making a shared object; recompile with -fPIC
+    _memDC->DrawText( label, x, y);
+#else
     _memDC->DrawText(wxString( label.c_str(), wxConvUTF8), x, y);
+#endif
 }
 
 void engineWx::noteAt(float x, float y)
