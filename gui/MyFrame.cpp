@@ -24,7 +24,7 @@ MyFrame::MyFrame( wxWindow* parent )
 
     //wxLogMessage("%s:%d %s", __FILE_NAME__, __LINE__, __FUNCTION__);
     myPanel = new MyPanel(this);
-    GetSizer()->Add( myPanel, 1, wxEXPAND|wxALL, 2 );
+    GetSizer()->Add( myPanel, 1, wxEXPAND|wxALL, 0 );
     
     L = luaL_newstate();
     luaL_openlibs(L);
@@ -192,12 +192,13 @@ void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
                  (
                     "Welcome to %s!\n"
                     "\n"
-                    "This is the minimal wxWidgets sample\n"
+                    "This is %s\n"
                     "running under %s.",
                     wxVERSION_STRING,
+                    wxTheApp->GetAppName(),
                     wxGetOsDescription()
                  ),
-                 "About wxWidgets minimal sample",
+                 wxString::Format("About %s", wxTheApp->GetAppName()),
                  wxOK | wxICON_INFORMATION,
                  this);
 }

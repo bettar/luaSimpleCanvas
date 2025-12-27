@@ -165,7 +165,7 @@ void drawScaleArpeggio(int scaleNum, HPGL::engineBase& engine)
 	}
 }
 
-int do_major_stuff(int idxLeft, int idxRight,
+void do_major_stuff(int idxLeft, int idxRight,
                    HPGL::engineBase& engine)
 {
     int w = 280;

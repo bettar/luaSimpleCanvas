@@ -15,7 +15,26 @@ message("CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 message("CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
 
 #-------------------------------
+if (APPLE)
 find_package(wxWidgets REQUIRED)
+endif()
+
+if (NOT APPLE AND UNIX) # Linux
+set(wxWidgets_CONFIG_EXECUTABLE "${WX_ROOT}/bin/wx-config")
+set(wxWidgets_wxrx_EXECUTABLE "${WX_ROOT}/bin/wxrc")
+find_package(wxWidgets COMPONENTS core base aui adv gl qa html xml richtext net ribbon propgrid REQUIRED)
+include(${wxWidgets_USE_FILE})
+endif()
+
+if (WIN32)
+  set(wxWidgets_ROOT_DIR ${WX_ROOT})
+  if (MINGW)
+    find_package(OpenGL REQUIRED)
+    #set(wxWidgets_wxrx_EXECUTABLE "${WX_ROOT}/bin/wxrc.exe") 
+    #set(wxWidgets_INCLUDE_DIRS ${WX_ROOT}/include)
+    find_package(wxWidgets REQUIRED CONFIG HINTS ${WX_ROOT})
+  endif()
+endif()
 
 message("wxWidgets_CONFIGURATION = ${wxWidgets_CONFIGURATION}")
 message("wxWidgets_defines = ${wxWidgets_defines}")
@@ -24,10 +43,26 @@ message("wxWidgets_LIBRARIES = ${wxWidgets_LIBRARIES}")
 message("wxWidgets_DIR = ${wxWidgets_DIR}")
 message("wxWidgets_CXX_FLAGS = ${wxWidgets_CXX_FLAGS}")
 
+if (NOT WIN32)
 include(${wxWidgets_USE_FILE})
+else()
+#TODO
+message("wxWidgets_USE_FILE = ${wxWidgets_USE_FILE}")
+endif()
 
 #-----------------------------------------------------------------------------
-find_package(Lua REQUIRED)
+if (WIN32)
+  if (MINGW)
+    set(LUA_LIBRARIES ${Lua_ROOT}/lib/liblua.a)
+    set(LUA_INCLUDE_DIR ${Lua_ROOT}/include)
+    message("Lua_ROOT: ${Lua_ROOT}")
+    #list(APPEND CMAKE_PREFIX_PATH "${Lua_ROOT}")
+    #find_package(Lua REQUIRED CONFIG HINTS ${Lua_ROOT})
+  endif()
+else() # Apple and Linux
+  find_package(Lua REQUIRED)
+endif()
+
 message("Lua_VERSION: ${Lua_VERSION}")
 message("LUA_INCLUDE_DIR: ${LUA_INCLUDE_DIR}")
 message("LUA_LIBRARIES: ${LUA_LIBRARIES}")

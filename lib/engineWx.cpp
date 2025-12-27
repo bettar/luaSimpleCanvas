@@ -47,8 +47,9 @@ void engineWx::initialize(float x1, float y1, float x2, float y2)
 #ifdef NDEBUG
     _memDC->SetBackground(*wxWHITE_BRUSH);
     _memDC->Clear();
+    
     // For filled areas
-    _memDC->SetBrush(wxBrush(wxColour(0,0,0,wxALPHA_TRANSPARENT)));
+    _memDC->SetBrush(wxBrush(wxColour(255,255,255,wxALPHA_TRANSPARENT)));
 #else
     _memDC->SetBackground(*wxYELLOW_BRUSH);
     _memDC->Clear();

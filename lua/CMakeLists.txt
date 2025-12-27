@@ -1,4 +1,4 @@
-set(LUA_PKG_NAME luaPackage)
+set(LUA_PKG_NAME simpleCanvas)
 message("=== TARGET: ${LUA_PKG_NAME}")
 
 add_library(${LUA_PKG_NAME} SHARED

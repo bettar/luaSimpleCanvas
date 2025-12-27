@@ -28,3 +28,7 @@ target_link_libraries( ${APP_NAME}
     ${wxWidgets_LIBRARIES}
     ${LUA_LIBRARIES}
     ${LIB_NAME})
+
+if (MINGW)
+    target_link_libraries(${APP_NAME} opengl32.lib)
+endif()

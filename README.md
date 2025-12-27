@@ -31,11 +31,12 @@ Two types of output files are generated: HGL and PNG
 
 ---
 ## Dependencies
-- Lua
-- wxWidgets
-- CMake
+- [Lua](https://www.lua.org/)
+- [wxWidgets](https://wxwidgets.org/)
+- [wxFormBuilder](https://github.com/wxFormBuilder/wxFormBuilder)
+- [CMake](https://cmake.org/)
 
-6 types of target executables can be built with CMake:
+In this project, 6 different target executables can be built with CMake:
 
 ~~~
 $ tree -d

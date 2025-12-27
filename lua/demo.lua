@@ -20,7 +20,6 @@ fr = f * 2 * math.pi -- radians
 a = 40 -- amplitude
 for i = 1,n,1
 do
-
   color = math.fmod(i,6)
   sc.pen(color+1, 3.0)
 
@@ -37,5 +36,6 @@ sc.line(x,y,100,0)
 sc.labelSize(28)
 sc.labelRelative(0,0, "At 150,50 😀 \u{4e2d} ♯ ♭")
 
-if (arg[1] != nil)
+if arg[1] then
   sc.save(arg[1])
+end
