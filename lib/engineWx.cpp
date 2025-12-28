@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include "wx/log.h"
+#include "wx/renderer.h"
 
 #include "engineWx.h"
 
@@ -38,7 +39,10 @@ void engineWx::initialize(float x1, float y1, float x2, float y2)
     else
         _bmp = wxBitmap(_width, _height, -1);
     
-    //tempBmp.UseAlpha(); // Enable transparency
+//#if defined(__WXMSW__) || defined(__WXOSX__)
+//        // wxBitmap::UseAlpha() is used only on wxMSW and wxOSX.
+//        _bmp.UseAlpha(); // Enable transparency
+//#endif
     
     _memDC->SelectObject(_bmp);
     

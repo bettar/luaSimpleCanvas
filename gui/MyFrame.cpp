@@ -82,7 +82,27 @@ void MyFrame::OnToolClicked( wxCommandEvent& event )
         case wxID_MY_ZOOM_OUT:
             myPanel->OnZoomOut();
             break;
-     
+            
+        case wxID_MY_PAN_DOWN:
+            myPanel->OnPanDown();
+            myPanel->Refresh();
+            break;
+
+        case wxID_MY_PAN_UP:
+            myPanel->OnPanUp();
+            myPanel->Refresh();
+            break;
+        
+        case wxID_MY_PAN_LEFT:
+            myPanel->OnPanLeft();
+            myPanel->Refresh();
+            break;
+            
+        case wxID_MY_PAN_RIGHT:
+            myPanel->OnPanRigth();
+            myPanel->Refresh();
+            break;
+            
         case wxID_CELLO_STRINGS:
             myPanel->whatToDraw = DRAW_STRING_DIAGRAM;
             myPanel->Refresh();

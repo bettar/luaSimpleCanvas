@@ -103,9 +103,9 @@ void MyPanel::OnPaint( wxPaintEvent& event )
     std::unique_ptr<wxGraphicsContext> gc(wxGraphicsContext::Create(pdc));
     
     const wxSize size = GetClientSize();
-#ifdef NDEBUG
+  #ifdef NDEBUG
     const wxDouble margin = 0;
-#else
+  #else
     const wxDouble margin = 10;
     gc->PushState();
     
@@ -128,19 +128,28 @@ void MyPanel::OnPaint( wxPaintEvent& event )
     gc->FillPath(path);
     
     gc->PopState();
-#endif
+  #endif
 
-    
     //gdc.SetTransformMatrix(m_affineMatrix);
     gc->PushState();
     gc->Scale(zoom,zoom);
     wxBitmap tempBmp;
     if (whatToDraw != DRAW_NOTHING) {
         tempBmp = DrawContents(GetClientSize());
+        bwidth = tempBmp.GetWidth();
+        bheight = tempBmp.GetHeight();
+        
+        // Center the image
+        auto width = size.GetWidth();
+        auto height = size.GetHeight();
+        auto transx = this->pan[0] + (width  - this->bwidth  * this->zoom) / (2*this->zoom);
+        auto transy = this->pan[1] + (height - this->bheight * this->zoom) / (2*this->zoom);
+     
+        gc->Translate(transx, transy);
         gc->DrawBitmap(tempBmp,
                        margin, margin,
-                       size.GetWidth()-2*margin,
-                       size.GetHeight()-2*margin);
+                       this->bwidth - 2*margin,
+                       this->bheight  - 2*margin);
     }
     gc->PopState(); // Restore the translation and scaling
 #endif
@@ -180,3 +189,25 @@ void MyPanel::OnZoomOut()
         Refresh();
     }
 }
+
+void MyPanel::OnPanUp()
+{
+    pan[1] -= 30;
+}
+
+void MyPanel::OnPanDown()
+{
+    pan[1] += 30;
+}
+
+void MyPanel::OnPanLeft()
+{
+    pan[0] -= 30;
+}
+
+
+void MyPanel::OnPanRigth()
+{
+    pan[0] += 30;
+}
+

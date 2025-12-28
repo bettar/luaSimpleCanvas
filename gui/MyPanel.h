@@ -19,6 +19,11 @@ class MyPanel : public MyPanelBase
     bool m_useAntiAliasing = true;
     wxBitmap DrawContents(const wxSize size);
     double zoom = 1.0;
+    int xpos, ypos;
+    int pan[2];
+    // Image Size
+    int bheight = 1;
+    int bwidth = 1;
     bool exportRequest = false;
     
 protected:
@@ -30,5 +35,9 @@ public:
     void OnExport();
     void OnZoomIn();
     void OnZoomOut();
+    void OnPanUp();
+    void OnPanDown();
+    void OnPanLeft();
+    void OnPanRigth();
     drawItem whatToDraw = DRAW_NOTHING;
 };

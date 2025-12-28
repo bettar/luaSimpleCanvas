@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 3.9.0 Sep 15 2021)
+// C++ code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -14,6 +14,10 @@ BEGIN_EVENT_TABLE( MyFrameBase, wxFrame )
 	EVT_TOOL( wxID_MY_EXPORT, MyFrameBase::_wxFB_OnToolClicked )
 	EVT_TOOL( wxID_MY_ZOOM_IN, MyFrameBase::_wxFB_OnToolClicked )
 	EVT_TOOL( wxID_MY_ZOOM_OUT, MyFrameBase::_wxFB_OnToolClicked )
+	EVT_TOOL( wxID_MY_PAN_DOWN, MyFrameBase::_wxFB_OnToolClicked )
+	EVT_TOOL( wxID_MY_PAN_UP, MyFrameBase::_wxFB_OnToolClicked )
+	EVT_TOOL( wxID_MY_PAN_LEFT, MyFrameBase::_wxFB_OnToolClicked )
+	EVT_TOOL( wxID_MY_PAN_RIGHT, MyFrameBase::_wxFB_OnToolClicked )
 	EVT_MENU( wxID_EXIT, MyFrameBase::_wxFB_OnMenuSelection )
 	EVT_MENU( wxID_ABOUT, MyFrameBase::_wxFB_OnMenuSelection )
 	EVT_MENU( wxID_CELLO_STRINGS, MyFrameBase::_wxFB_OnMenuSelection )
@@ -30,15 +34,25 @@ MyFrameBase::MyFrameBase( wxWindow* parent, wxWindowID id, const wxString& title
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
 
 	m_toolBar1 = new wxToolBar( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL|wxTB_TEXT );
-	m_toolOpen = m_toolBar1->AddTool( wxID_MY_OPEN, wxT("Open"), wxArtProvider::GetBitmap( wxART_FILE_OPEN, wxART_TOOLBAR ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxT("Refresh"), NULL );
+	m_toolOpen = m_toolBar1->AddTool( wxID_MY_OPEN, wxT("Open"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_FILE_OPEN), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxT("Refresh"), NULL );
 
-	m_toolExport = m_toolBar1->AddTool( wxID_MY_EXPORT, wxT("Export"), wxArtProvider::GetBitmap( wxART_FILE_SAVE, wxART_TOOLBAR ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxT("Export to PNG"), NULL );
+	m_toolExport = m_toolBar1->AddTool( wxID_MY_EXPORT, wxT("Export"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_FILE_SAVE), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxT("Export to PNG"), NULL );
 
 	m_toolBar1->AddSeparator();
 
-	m_toolZoomIn = m_toolBar1->AddTool( wxID_MY_ZOOM_IN, wxT("Zoom In"), wxArtProvider::GetBitmap( wxART_PLUS, wxART_TOOLBAR ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+	m_toolZoomIn = m_toolBar1->AddTool( wxID_MY_ZOOM_IN, wxT("Zoom In"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_PLUS), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
 
-	m_toolZoomOut = m_toolBar1->AddTool( wxID_MY_ZOOM_OUT, wxT("Zoom Out"), wxArtProvider::GetBitmap( wxART_MINUS, wxART_TOOLBAR ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+	m_toolZoomOut = m_toolBar1->AddTool( wxID_MY_ZOOM_OUT, wxT("Zoom Out"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_MINUS), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+
+	m_toolBar1->AddSeparator();
+
+	m_tool5 = m_toolBar1->AddTool( wxID_MY_PAN_DOWN, wxT("Down"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_GO_DOWN), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+
+	m_tool6 = m_toolBar1->AddTool( wxID_MY_PAN_UP, wxT("Up"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_GO_UP), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+
+	m_tool7 = m_toolBar1->AddTool( wxID_MY_PAN_LEFT, wxT("Left"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_GO_BACK), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
+
+	m_tool8 = m_toolBar1->AddTool( wxID_MY_PAN_RIGHT, wxT("Right"), wxArtProvider::GetBitmap( wxASCII_STR(wxART_GO_FORWARD), wxASCII_STR(wxART_TOOLBAR) ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString, NULL );
 
 	m_toolBar1->Realize();
 

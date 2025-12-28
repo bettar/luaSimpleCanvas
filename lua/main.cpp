@@ -144,13 +144,14 @@ static const struct luaL_Reg mylib [] = {
 
 // --------- C_API
 
-// Called when Lua requires this module
-extern "C"
-int
 #ifdef _WIN32
-__declspec(dllexport)
+#define DllExport   __declspec( dllexport )
+#else
+#define DllExport
 #endif
-luaopen_simpleCanvas(lua_State *L)
+
+// Called when Lua requires this module
+extern "C" int DllExport luaopen_simpleCanvas(lua_State *L)
 {
     wxImage::AddHandler(new wxPNGHandler);
     

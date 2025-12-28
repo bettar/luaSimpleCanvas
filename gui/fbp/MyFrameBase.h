@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 3.9.0 Sep 15 2021)
+// C++ code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -27,14 +27,18 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-#define wxID_MY_OPEN 1000
-#define wxID_MY_EXPORT 1001
-#define wxID_MY_ZOOM_IN 1002
-#define wxID_MY_ZOOM_OUT 1003
-#define wxID_CELLO_STRINGS 1004
-#define wxID_CELLO_MAJOR 1005
-#define wxID_CELLO_MINOR 1006
-#define wxID_GUITAR_MAJOR 1007
+#define wxID_MY_OPEN 6000
+#define wxID_MY_EXPORT 6001
+#define wxID_MY_ZOOM_IN 6002
+#define wxID_MY_ZOOM_OUT 6003
+#define wxID_MY_PAN_DOWN 6004
+#define wxID_MY_PAN_UP 6005
+#define wxID_MY_PAN_LEFT 6006
+#define wxID_MY_PAN_RIGHT 6007
+#define wxID_CELLO_STRINGS 6008
+#define wxID_CELLO_MAJOR 6009
+#define wxID_CELLO_MINOR 6010
+#define wxID_GUITAR_MAJOR 6011
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class MyFrameBase
@@ -55,6 +59,10 @@ class MyFrameBase : public wxFrame
 		wxToolBarToolBase* m_toolExport;
 		wxToolBarToolBase* m_toolZoomIn;
 		wxToolBarToolBase* m_toolZoomOut;
+		wxToolBarToolBase* m_tool5;
+		wxToolBarToolBase* m_tool6;
+		wxToolBarToolBase* m_tool7;
+		wxToolBarToolBase* m_tool8;
 		wxStatusBar* m_statusBar1;
 		wxMenuBar* m_menubar1;
 		wxMenu* menuActions;
