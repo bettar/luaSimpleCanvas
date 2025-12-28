@@ -111,7 +111,12 @@ MyFrameBase::~MyFrameBase()
 }
 
 BEGIN_EVENT_TABLE( MyPanelBase, wxPanel )
+	EVT_LEFT_DOWN( MyPanelBase::_wxFB_OnLeftDown )
+	EVT_LEFT_UP( MyPanelBase::_wxFB_OnLeftUp )
+	EVT_MOTION( MyPanelBase::_wxFB_OnMotion )
 	EVT_PAINT( MyPanelBase::_wxFB_OnPaint )
+	EVT_RIGHT_DOWN( MyPanelBase::_wxFB_OnRightDown )
+	EVT_RIGHT_UP( MyPanelBase::_wxFB_OnRightUp )
 END_EVENT_TABLE()
 
 MyPanelBase::MyPanelBase( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name ) : wxPanel( parent, id, pos, size, style, name )

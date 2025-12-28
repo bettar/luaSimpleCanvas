@@ -149,7 +149,7 @@ void MyPanel::OnPaint( wxPaintEvent& event )
         gc->DrawBitmap(tempBmp,
                        margin, margin,
                        this->bwidth - 2*margin,
-                       this->bheight  - 2*margin);
+                       this->bheight - 2*margin);
     }
     gc->PopState(); // Restore the translation and scaling
 #endif
@@ -211,3 +211,91 @@ void MyPanel::OnPanRigth()
     pan[0] += 30;
 }
 
+void MyPanel::OnLeftDown( wxMouseEvent& event )
+{
+    this->mousepos = event.GetPosition();
+}
+
+void MyPanel::OnLeftUp( wxMouseEvent& event )
+{
+    this->SetCursor(wxCursor(wxCURSOR_DEFAULT));
+}
+
+void MyPanel::OnRightDown( wxMouseEvent& event )
+{
+    this->mousepos = event.GetPosition();
+}
+
+void MyPanel::OnRightUp( wxMouseEvent& event )
+{
+    this->SetCursor(wxCursor(wxCURSOR_DEFAULT));
+}
+
+void MyPanel::OnMotion( wxMouseEvent& evt )
+{
+    if (evt.LeftIsDown()) {
+        this->OnLeftIsDown(evt);
+        this->SetCursor(wxCursor(wxCURSOR_SIZING));
+    }
+    else if (evt.RightIsDown()) {
+        this->OnRightIsDown(evt);
+
+        if (wxPlatformIs(wxOS_WINDOWS))
+        {
+#if 1
+            wxLogDebug("%s %d, TODO: custom cursor", __FUNCTION__, __LINE__);
+#else
+            // Custom cursors with > 2 colors only works on Windows currently
+            image = wxImage(util::GetResourcePath("contrast_high.png"));
+            this->SetCursor(wxCursorFromImage(image));
+#endif
+        }
+    }
+
+    this->mousepos = evt.GetPosition();
+    OnUpdatePositionValues(evt);
+}
+
+void MyPanel::OnLeftIsDown(wxMouseEvent& evt)
+{
+    auto delta = this->mousepos - evt.GetPosition();
+    this->mousepos = evt.GetPosition();
+    this->pan[0] -= (delta.x/this->zoom);
+    this->pan[1] -= (delta.y/this->zoom);
+    Refresh();
+}
+
+// 691
+// Change the window/level when the right mouse button is dragged.
+void MyPanel::OnRightIsDown(wxMouseEvent& evt)
+{
+    auto delta = this->mousepos - evt.GetPosition();
+    this->mousepos = evt.GetPosition();
+    Refresh();
+}
+
+void MyPanel::OnUpdatePositionValues(wxMouseEvent& evt)
+{
+    wxPoint pos;
+
+    if (evt.GetEventType() == wxEVT_NULL)//(evt == None) // called from OnMouseEnter() or OnMouseLeave()
+        pos = /*np.array*/(this->mousepos);
+    else
+        pos = /*np.array*/(evt.GetPosition());
+
+    // On the Mac, the cursor position is shifted by 1 pixel to the left
+    if (wxPlatformIs(wxOS_MAC))
+        pos.x = pos.x - 1;//pos = pos - 1;
+
+    // Determine the coordinates with respect to the current zoom and pan
+    int w,h;
+    this->GetClientSize(&w, &h);
+    int xpos = (int)(pos.x/this->zoom - this->pan[0] - (w - this->bwidth*this->zoom) /
+               (2*this->zoom));
+    int ypos = (int)(pos.y/this->zoom - this->pan[1] - (h - this->bheight*this->zoom) /
+               (2*this->zoom));
+
+    // Save the coordinates so they can be used by plugins
+    this->xpos = xpos;
+    this->ypos = ypos;
+}

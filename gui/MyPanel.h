@@ -19,6 +19,7 @@ class MyPanel : public MyPanelBase
     bool m_useAntiAliasing = true;
     wxBitmap DrawContents(const wxSize size);
     double zoom = 1.0;
+    wxPoint mousepos;
     int xpos, ypos;
     int pan[2];
     // Image Size
@@ -27,7 +28,12 @@ class MyPanel : public MyPanelBase
     bool exportRequest = false;
     
 protected:
-    void OnPaint( wxPaintEvent& event );
+	void OnLeftDown( wxMouseEvent& event );
+	void OnLeftUp( wxMouseEvent& event );
+	void OnMotion( wxMouseEvent& event );
+	void OnPaint( wxPaintEvent& event );
+	void OnRightDown( wxMouseEvent& event );
+	void OnRightUp( wxMouseEvent& event );
 
 public:
     MyPanel( wxWindow* parent );
@@ -39,5 +45,10 @@ public:
     void OnPanDown();
     void OnPanLeft();
     void OnPanRigth();
+    
+    void OnLeftIsDown(wxMouseEvent& evt);
+    void OnRightIsDown(wxMouseEvent& evt);
+    void OnUpdatePositionValues(wxMouseEvent& evt);
+    
     drawItem whatToDraw = DRAW_NOTHING;
 };

@@ -91,14 +91,24 @@ class MyPanelBase : public wxPanel
 	private:
 
 		// Private event handlers
+		void _wxFB_OnLeftDown( wxMouseEvent& event ){ OnLeftDown( event ); }
+		void _wxFB_OnLeftUp( wxMouseEvent& event ){ OnLeftUp( event ); }
+		void _wxFB_OnMotion( wxMouseEvent& event ){ OnMotion( event ); }
 		void _wxFB_OnPaint( wxPaintEvent& event ){ OnPaint( event ); }
+		void _wxFB_OnRightDown( wxMouseEvent& event ){ OnRightDown( event ); }
+		void _wxFB_OnRightUp( wxMouseEvent& event ){ OnRightUp( event ); }
 
 
 	protected:
 		wxStaticText* m_staticText1;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void OnLeftDown( wxMouseEvent& event ) { event.Skip(); }
+		virtual void OnLeftUp( wxMouseEvent& event ) { event.Skip(); }
+		virtual void OnMotion( wxMouseEvent& event ) { event.Skip(); }
 		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
+		virtual void OnRightDown( wxMouseEvent& event ) { event.Skip(); }
+		virtual void OnRightUp( wxMouseEvent& event ) { event.Skip(); }
 
 
 	public:

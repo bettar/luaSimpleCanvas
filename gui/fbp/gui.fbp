@@ -415,7 +415,12 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style">wxTAB_TRAVERSAL</property>
+      <event name="OnLeftDown">OnLeftDown</event>
+      <event name="OnLeftUp">OnLeftUp</event>
+      <event name="OnMotion">OnMotion</event>
       <event name="OnPaint">OnPaint</event>
+      <event name="OnRightDown">OnRightDown</event>
+      <event name="OnRightUp">OnRightUp</event>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size"></property>
         <property name="name">bSizer2</property>
